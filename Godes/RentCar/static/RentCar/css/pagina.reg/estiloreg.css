@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+table{
+    font-weight: bold;
+}
+
+th{
+    color: black;
+}
+
+.table-dark {
+    --bs-table-bg: rgb(255, 174, 0);
+}
+body {
+  font-family:'Montserrat', sans-serif;
+}
+
+.menu a {
+    font-size: 18px;
+    font-weight: bold;
+    color: #3f3f3f;
+
+}
+.menu button {
+    font-size: 18px;
+    font-weight: bold;
+    background-color: rgb(255, 174, 0);
+}
+
+footer{
+    margin-top: 210px;
+}

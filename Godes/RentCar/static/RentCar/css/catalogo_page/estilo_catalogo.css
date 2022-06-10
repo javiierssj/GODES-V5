@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    overflow-x: hidden;
+}
+
+/*=============MENU============*/
+
+#navbar_catalogo a {
+    font-size: 18px;
+    font-weight: bold;
+    color: #3f3f3f;
+
+}
+#navbar_catalogo button {
+    font-size: 18px;
+    font-weight: bold;
+    background-color: rgb(255, 174, 0);
+
+}
+
+
+/*MEDIA QUERIES PANTALLA  SM*/
+
+@media (max-width: 768px){
+    
+    .catalogos-autos{
+        width: 100%;
+        text-align:center;
+
+    }
+}
+
+/*pantallas super chicas*/
+
+@media(max-width: 576){
+    .icono2-wrap{
+        flex-wrap: wrap;
+        justify-content: center;
+
+    }
+    
+
+}
