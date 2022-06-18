@@ -39,7 +39,7 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#"><span style="color: rgb(255, 174, 0);">
+                        <a class="nav-link active" aria-current="page" href="{% url 'inicio' %}"><span style="color: rgb(255, 174, 0);">
                                 Inicio</a>
                     </li>
 
@@ -52,15 +52,15 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Perfil</a>
+                        <a class="nav-link" href="{% url 'perfil' %}">Perfil</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Ordenes</a>
+                        <a class="nav-link" href="{% url 'ordenes' %}">Ordenes</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#">agregar autos</a>
+                        <a class="nav-link" href="{% url 'registro_auto' %}">agregar autos</a>
                     </li>
 
                 </ul>
@@ -68,7 +68,7 @@
                 <a class='btn btn-danger btn-rounded' href="#">Cerrar Sesion</a>
 
                 <form class="d-flex">
-                    <a href="#" class="btn mx-3" style="background-color: rgb(255, 174, 0);">Conectar</a>
+                    <a href="{% url 'inicioSesion' %}" class="btn mx-3" style="background-color: rgb(255, 174, 0);">Conectar</a>
                 </form>
 
             </div>
