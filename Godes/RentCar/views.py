@@ -2,10 +2,11 @@ from django.shortcuts import render
 
 # Create your views here.
 
+
 def inicio(request):
     return render(request, 'RentCar/main_page.html')
 
-def info(request):
+def informacion(request):
     return render(request, 'RentCar/Pag_info.html')
 
 def perfil(request):
@@ -22,3 +23,4 @@ def registro_auto(request):
 
 def inicioSesion(request):
     return render(request, 'RentCar/InicioSesion.html')
+
