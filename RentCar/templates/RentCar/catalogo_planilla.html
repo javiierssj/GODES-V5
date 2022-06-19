@@ -17,7 +17,7 @@
                   <p class="card-text">{{vehiculo.descripcion}}</p>
                   <a href={{vehiculo.patente}} class="btn " style="background-color: rgb(255, 174, 0);">Ir</a>
                   {% if user.is_staff %}
-                  <a href="#" class="btn" style="background-color: rgb(255, 174, 0); margin-left: 110px;">MODIFICAR</a>
+                  <a href="{% url 'mod_auto' vehiculo.patente %}" class="btn" style="background-color: rgb(255, 174, 0); margin-left: 110px;">MODIFICAR</a>
                   {% endif %}
                 </div>
               </div>

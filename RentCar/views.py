@@ -61,6 +61,22 @@ def registarauto(request):
                 data["form"] = formulario
         return render(request,"RentCar/catalogo_planilla.html", data)
 
+def mod_auto(request, pat):
+    vehiculo1 = get_object_or_404(vehiculo, patente=pat)
+    
+    data1 = {
+        'form': vehiculoForm(instance=vehiculo1)
+      }
+    if request.method == 'POST':
+        formulario = vehiculoForm(data=request.POST, instance=vehiculo1,  files=request.FILES)
+        if formulario.is_valid():
+            formulario.save()
+            return redirect(to="catalogo_planilla")
+        data["form"] = formulario
+    
+    return render(request,"RentCar/mod_auto.html", data1)
+
+
 
 
 def catalogo_planilla(request):

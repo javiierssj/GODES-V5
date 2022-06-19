@@ -112,6 +112,7 @@
       <p>{{vehiculo.descripcion}}</p>
     </div>
   
+    {% if user.is_authenticated %}
     <!-- Boton arrendar -->
     <div class="container">
       <div class="descripcion">
@@ -127,7 +128,7 @@
         </div>
       </div>
     </div>
-
+    {% endif %}
     <!-- Modal -->
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
       aria-labelledby="staticBackdropLabel" aria-hidden="true">
