@@ -1,22 +1,30 @@
 
+{% extends 'RentCar/catalogo.html' %}
+{% load static %}
 
+
+{% block content %}
 
 <section class="container-fluid">
   
     <div class="row w-100 mx-auto catalogos-autos" id="color_btn_cat">
-    
+      {% for vehiculo in vehiculo %}
         <div class="col-lg-4 col-md-12 col-sm-12  my-5 d-flex justify-content-center icono2-wrap">
             <div class="card" style="width: 20rem;">
-                <img src="{% static 'RentCar/img/imagenes_catalogo/SubaruXV-1.jpg' %}" class="card-img-top" alt="test">
+                <img src="{{ vehiculo.imagen1.url }}" class="card-img-top" alt="test">
                 <div class="card-body">
-                  <h5 class="card-title"></h5>
-                  <p class="card-text"></p>
+                  <h5 class="card-title">{{vehiculo.idModelo}}</h5>
+                  <p class="card-text">{{vehiculo.descripcion}}</p>
                   <a href={{vehiculo.patente}} class="btn " style="background-color: rgb(255, 174, 0);">Ir</a>
+                  {% if user.is_staff %}
+                  <a href="#" class="btn" style="background-color: rgb(255, 174, 0); margin-left: 110px;">MODIFICAR</a>
+                  {% endif %}
                 </div>
               </div>
   </div>
- 
+  {% endfor %}
 </div>
 
 </section>
 
+{% endblock %}

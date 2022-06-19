@@ -20,20 +20,20 @@
 
     
   </div>
-  <form id="registrarusuario" class="form-registro my-3 mb-4" method="POST" action="">
-  
-      <center><h4 class="formu" style="font-weight: bold;">Registrarse</h4></center>
-      <input class="controls" type="text" name="rut" id="rut" placeholder="Rut o pasaporte" required>
-      <input class="controls" type="password" name="clave" id="clave" placeholder="Contraseña"required>
-      <input class="controls" ype="text" name="nombreu" id="nombreu" placeholder="Nombre"required>
-      <input class="controls" type="text" name="appaterno" id="appaterno" placeholder="Apellido paterno"required>
-      <input class="controls" type="text" name="apmaterno" id="apmaterno" placeholder="Apellido materno"required>
-      <input class="controls" type="text" name="correo" id="correo" placeholder="Correo electronico"required>
-      <input class="controls" type="text" name="dire" id="dire" placeholder="Direccion"required>
-      <label style="font-size: 20px;" for="">Fecha de nacimiento</label>
-      <input class="controls" type="date" name="naci" id="naci" required>
-      <input class="botons" type="submit" value="Agregar registro">
-      <p style="color: black;" class="warnings" id="warnings"></p>
-</form>    
+  <form id="registrarusuario" class="form-registro my-3 mb-4" method="POST" action="{% url 'registrarusuario' %}">
+    {% csrf_token %}
+     <center><h4 class="formu" style="font-weight: bold;">Registrarse</h4></center>
+     <input class="controls" type="text" name="rut" id="rut" placeholder="Rut o pasaporte" required>
+     <input class="controls" type="password" name="clave" id="clave" placeholder="Contraseña"required>
+     <input class="controls" ype="text" name="nombreu" id="nombreu" placeholder="Nombre"required>
+     <input class="controls" type="text" name="appaterno" id="appaterno" placeholder="Apellido paterno"required>
+     <input class="controls" type="text" name="apmaterno" id="apmaterno" placeholder="Apellido materno"required>
+     <input class="controls" type="text" name="correo" id="correo" placeholder="Correo electronico"required>
+     <input class="controls" type="text" name="dire" id="dire" placeholder="Direccion"required>
+     <label style="font-size: 20px;" for="">Fecha de nacimiento</label>
+     <input class="controls" type="date" name="naci" id="naci" required>
+     <input class="botons" type="submit" value="Agregar registro">
+     <p style="color: black;" class="warnings" id="warnings"></p>
+</form>   
 
 {% endblock %}

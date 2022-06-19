@@ -27,6 +27,7 @@ class region(models.Model):
     def __str__(self):
         return self.nombre_region  
      
+
 class comuna(models.Model):
     id_comuna = models.IntegerField(primary_key=True, verbose_name="Id de la comuna")
     nombre_comuna = models.CharField(max_length=30, verbose_name="Nombre de la comuna", blank=False, null=False)
@@ -50,11 +51,11 @@ class usuario(models.Model):
     fecha_nacimiento = models.DateField(verbose_name="fecha de nacimiento del cliente")
     correo = models.CharField(verbose_name="correo de la persona",max_length=100)
     direccion = models.CharField(verbose_name="direccion de la persona",max_length=100) 
-    rol = models.ForeignKey(rol, on_delete=models.CASCADE)
     def __str__(self):
         return self.nombre 
 
 class vehiculo(models.Model):
+    idModelo = models.ForeignKey(modelo, on_delete=models.CASCADE)
     patente = models.CharField(primary_key=True, verbose_name="Patente vehiculo", max_length=6)
     nro_chasis = models.CharField(max_length=17, verbose_name="Nro chasis", blank=False, null=False)
     color = models.CharField(max_length=25, verbose_name="Color vehiculo", blank=False, null=False)
@@ -62,11 +63,14 @@ class vehiculo(models.Model):
     asientos = models.CharField(max_length=10, verbose_name="Numero de asientos del vehiculo", blank=False, null=False)
     kilos = models.CharField(max_length=10, verbose_name="Kilos del vehiculo", blank=False, null=False)
     nro_motor = models.CharField(max_length=10, verbose_name="Numero del motor del vehiculo", blank=False, null=False)
-    idModelo = models.ForeignKey(modelo, on_delete=models.CASCADE)
     precio_vehiculo = models.IntegerField(verbose_name="Precio del vehiculo")
     rendimiento = models.CharField(max_length=25, verbose_name="rendimiento del vehiculo en kms", blank=False, null=False)
     motor = models.CharField(max_length=10, verbose_name="lts motor y caballos de fuerza", blank=False, null=False)
-    descripcion = models.CharField(max_length=255, verbose_name="descripcion del vehiculo", blank=False, null=False)
+    descripcion = models.TextField(verbose_name="descripcion del vehiculo", blank=False, null=False)
+    imagen1 = models.ImageField(upload_to="vehiculos", null=False)
+    imagen2 = models.ImageField(upload_to="vehiculos", null=False)
+    imagen3 = models.ImageField(upload_to="vehiculos", null=False)
+
     def __str__(self):
         return self.patente  
     
@@ -83,9 +87,3 @@ class orden(models.Model):
     precio_total_orden = models.IntegerField(verbose_name="Precio total de la orden")
     def __str__(self):
         return self.id_orden 
-
-
-
-
-    
- 

@@ -11,7 +11,7 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 d-flex mt-3 d-flex justify-content-center">
-          <a href="http://127.0.0.2:5501/Pagina/catalogo_page/catalogo_admin.html" class="btn mx-3" style="background-color: rgb(255, 174, 0);">Volver</a>
+          <a href="#" class="btn mx-3" style="background-color: rgb(255, 174, 0);">Volver</a>
   
       </div>
 
@@ -20,27 +20,9 @@
 
       
     </div>
-    <form class="form-registro my-3 mb-4" id="form" action="}" method="POST">
-
-        <center><h4 class="formu" style="font-weight: bold;">Registro vehículo</h4></center>
-        <input class="controls" type="text" name="Patente" id="Patente" placeholder="Patente" required>
-        <input class="controls" type="text" name="Nro_Chasis" id="Nro_Chasis" placeholder="Nro Chasis"required>
-        <input class="controls" type="text" name="Color" id="Color" placeholder="Color"required>
-        <input class="controls" type="text" name="disponible" id="disponible" placeholder="disponible"required>
-        <input class="controls" type="text" name="Asientos" id="Asientos" placeholder="Asientos"required>
-        <input class="controls" type="text" name="Kilos" id="Kilos" placeholder="Kilos"required>
-        <input class="controls" type="text" name="Nro_Motor" id="Nro_Motor" placeholder="Nro Motor"required>
-        <label>MODELO</label>
-        <select name="modelo" id="modelo">
-        </select>
-
-        <input class="controls" type="text" name="Precio" id="Precio" placeholder="Precio"required>
-        <input class="controls" type="text" name="rendimiento" id="rendimiento" placeholder="rendimiento" required>
-        <input class="controls" type="text" name="litros" id="litros" placeholder="litros"required>
-        <textarea class="controls" name="Descripcion" id="Descripcion" placeholder="Descripcion"required cols="40" rows="5"></textarea>
-    <div>
-    <input type="file" class="form-control" aria-label="file example" >
-    <div class="invalid-feedback">Suba foto del vehiculo</div>
+    <form class="form-registro my-3 mb-4" id="form" action="{% url 'registarauto' %}" method="POST">
+      {% csrf_token %}
+      {{ form }}
 
     </div>
         <input class="botons" type="submit" value="Agregar registro">

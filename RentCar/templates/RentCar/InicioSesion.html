@@ -10,17 +10,24 @@
 <!--=========================================-->
 <!--DATOS A SOLICITAR-->
 <!--=========================================-->
+{% if messages %}
+  <div>
+      {% for i in messages %}
+          <h3><p style="color: rgb(255, 174, 0);">{{ i }}</p></h3>
+      {% endfor %}
+  </div>
 
-<form class="form-registro mb-4" action="" method="POST" id="form">
-
-  <center><h4 class="formu" style="font-weight: bold;">Iniciar Sesion</h4></center>
-  <input class="controls" type="text" name="Rut" id="Rut" placeholder="Ingrese su rut o pasaporte" required>
-  <input class="controls" type="password" name="clave" id="clave" placeholder="contraseña" required>
-  <input type="submit" class="botons" type="button" value="Ingresar"></a>
-  <a href="{% url 'registro' %}"><input class="botons" type="button" value="Registrarse"></a>
-
-  <!--<p class="warnings" id="warnings"></p>-->
-</form>
+  {% endif %}
+  <form class="form-registro mb-4" action="{% url 'sesion' %}" method="POST" id="form">
+    {% csrf_token %}
+    <center><h4 class="formu" style="font-weight: bold;">Iniciar Sesion</h4></center>
+    <input class="controls" type="text" name="Rut" id="Rut" placeholder="Ingrese su rut o pasaporte" required>
+    <input class="controls" type="password" name="clave" id="clave" placeholder="contraseña" required>
+    <input type="submit" class="botons" type="button" value="Ingresar"></a>
+    <a href="{% url 'registro' %}"><input class="botons" type="button" value="Registrarse"></a>
+  
+    <!--<p class="warnings" id="warnings"></p>-->
+  </form>
 
 
 {% endblock %}
