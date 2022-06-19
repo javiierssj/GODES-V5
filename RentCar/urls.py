@@ -9,7 +9,7 @@ from .views import inicio, informacion, perfil, ordenes, registro, registarauto,
 urlpatterns = [
     path('',inicio,name="inicio"),
     path('informacion/',informacion,name="informacion"),
-    path('perfil/',perfil,name="perfil"),
+    path('perfil/<id>/',perfil,name="perfil"),
     path('ordenes/',ordenes,name="ordenes"),
     path('registro/',registro,name="registro"),
     path('mod_auto/<pat>', mod_auto,name="mod_auto"),

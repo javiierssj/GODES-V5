@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from .models import usuario, vehiculo, modelo
 from django.contrib import messages
 from django.contrib.auth.models import User
-from .forms import vehiculoForm
+from .forms import vehiculoForm, usuarioForm
 
 
 
@@ -90,8 +90,19 @@ def inicio(request):
 def informacion(request):
     return render(request, 'RentCar/Pag_info.html')
 
-def perfil(request):
-    return render(request, 'RentCar/pagina_perfil.html')
+def perfil(request, id):
+    usuario1 = get_object_or_404(usuario, rut_o_pasaporte=id )
+    data = {
+        'form': usuarioForm(instance=usuario1)
+      }
+    if request.method == 'POST':
+        formulario =  usuarioForm(data=request.POST, instance=usuario1)
+        if formulario.is_valid():
+            formulario.save()
+            return redirect(to="inicio")
+        data["form"] = formulario
+
+    return render(request, 'RentCar/pagina_perfil.html', data)
 
 def ordenes(request):
     return render(request, 'RentCar/pag_registro.html')

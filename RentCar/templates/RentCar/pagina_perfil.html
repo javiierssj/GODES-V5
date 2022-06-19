@@ -2,69 +2,32 @@
 {% block contenido %}
 {% load static %}
 
-<link rel="stylesheet" href="{% static 'RentCar/css/perfiles/estilo_pf.css' %}">
+<link rel="stylesheet" href="{% static 'RentCar/css/pagina_formulario/formpag.css' %}">
 
-  <form action="" method="POST" id="form" class="container">
-    <div class="row">
-      <div class="col-md-3"></div>
-      <div class="col-md-6">
+<!--=========================================-->
+<!--DATOS A SOLICITAR-->
+<!--=========================================-->
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 d-flex mt-3 d-flex justify-content-center">
+      <a href="#" class="btn mx-3" style="background-color: rgb(255, 174, 0);">Volver</a>
 
-        <fieldset disabled>
-          <legend style="font-size: 30px;">Perfil del <span style="color:rgb(255, 174, 0) ;">Usuario</span></legend>
-          <div class="mb-3">
-            <label for="disabledTextInput" class="form-label">Rut</label>
-            <input type="text" id="disabledTextInput" class="form-control" placeholder="xx.xxx.xx-x">
-          </div>
-          <div class="mb-3">
-            <label for="disabledTextInput" class="form-label">Correo Electronico</label>
-            <input type="text" id="disabledTextInput" class="form-control" placeholder="xxxxxxx@xxxxx.xx">
-          </div>
-        </fieldset>
-        <div class="form">
+    </div>
 
-          <div class="mb-3">
-            <label for="">Nombre</label>
-            <input type="text" name="nombre" id="nombre" class="form-control" placeholder="{{usuario.nombre}}" required><span
-              class="barra"></span>
 
-          </div>
-          <div class="mb-3">
-            <label for="">Apellido Paterno</label>
-            <input type="text" name="apellido_p" id="apellido_p" class="form-control" placeholder="" required><span
-              class="barra"></span>
-
-          </div>
-          <div class="mb-3">
-            <label for="">Apellido Materno</label>
-            <input type="text" name="apellido_m" id="apellido_m" class="form-control" placeholder=""
-              required><span class="barra"></span>
-
-          </div>
-          <div class="mb-3">
-            <label for="">Direccion</label>
-            <input type="text" name="direccion" id="direccion" class="form-control" placeholder=""
-              required><span class="barra"></span>
-
-          </div>
-
-          <div class="mb-3">
-            <label for="">Nueva contraseña</label>
-            <input type="password" name="clave" id="clave" class="form-control" required><span class="barra"></span>
-
-          </div>
-          <div class="mb-3">
-            <label for="">Contraseña actual</label>
-            <input type="password" name="clave1" id="clave1" class="form-control" required><span class="barra"></span>
-
-          </div>
-          <button type="submit" class="btn mx-3" style="background-color: rgb(255, 174, 0)">Guardar</button>
-
-          <p class="warnings" id="warnings"></p>
-        </div>
-      </div>
-      <div class="col-md-3"></div>
-  </form>
   </div>
-  <script src="js_perfil/validacion_perfil.js"></script>
+
+
+</div>
+<form class="form-registro my-3 mb-4" id="form" action="" method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ form }}
+  <input class="botons" type="submit" value="Modificar Perfil">
+  <p style="color: black;" class="warnings" id="warnings"></p>
+</form>
+{{mensaje}}
+<script src="Validaciones/valdiacion_auto.js"></script>
+
+
 
 {% endblock %}

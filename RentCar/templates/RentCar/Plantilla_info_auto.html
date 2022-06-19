@@ -53,9 +53,11 @@
                     </li>
 
                     {% if user.is_authenticated %}
+                    {% for usuario in usuario %}      
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'perfil' %}">Perfil</a>
+                        <a class="nav-link" href="{% url 'perfil' usuario.id %}">Perfil</a>
                     </li>
+                    {% endfor %}
                     {% endif %}
 
                     {% if user.is_staff %}
