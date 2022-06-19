@@ -19,11 +19,9 @@
 
 
 </div>
-<form class="form-registro my-3 mb-4" id="form" action="" method="POST">
+<form class="form-registro my-3 mb-4" id="form" action="" method="POST" enctype="multipart/form-data">
   {% csrf_token %}
   {{ form }}
-
-  </div>
   <input class="botons" type="submit" value="Modificar">
   <p style="color: black;" class="warnings" id="warnings"></p>
 </form>

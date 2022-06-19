@@ -49,17 +49,18 @@ def logout_view(request):
     return redirect('inicio')
 
 def registarauto(request):
+
         data = {
             'form': vehiculoForm()
         }
-        if request.method == 'POST' :
+        if request.method == 'POST':
             formulario = vehiculoForm(data=request.POST, files=request.FILES)
             if formulario.is_valid():
                 formulario.save()
-                return redirect(to="catalogo_planilla")
+                data["mensaje"] = "Agregado correctamente"
             else:
                 data["form"] = formulario
-        return render(request,"RentCar/catalogo_planilla.html", data)
+        return render(request,"RentCar/pag_form_auto.html", data)
 
 def mod_auto(request, pat):
     vehiculo1 = get_object_or_404(vehiculo, patente=pat)
@@ -97,9 +98,6 @@ def ordenes(request):
 
 def registro(request):
     return render(request, 'RentCar/pag_formulario.html')
-
-def registro_auto(request):
-    return render(request, 'RentCar/pag_form_auto.html')
 
 def inicioSesion(request):
     return render(request, 'RentCar/InicioSesion.html')
