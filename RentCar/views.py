@@ -52,11 +52,14 @@ def registarauto(request):
         data = {
             'form': vehiculoForm()
         }
-        if request.methods == 'POST':
+        if request.method == 'POST' :
             formulario = vehiculoForm(data=request.POST, files=request.FILES)
-            if formulario.us_valid():
+            if formulario.is_valid():
                 formulario.save()
-        return render(request,"RentCar/pag_form_auto.html", data)
+                return redirect(to="catalogo_planilla")
+            else:
+                data["form"] = formulario
+        return render(request,"RentCar/catalogo_planilla.html", data)
 
 
 
