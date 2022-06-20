@@ -67,9 +67,9 @@ class vehiculo(models.Model):
     rendimiento = models.CharField(max_length=25, verbose_name="rendimiento del vehiculo en kms", blank=False, null=False)
     motor = models.CharField(max_length=10, verbose_name="lts motor y caballos de fuerza", blank=False, null=False)
     descripcion = models.TextField(verbose_name="descripcion del vehiculo", blank=False, null=False)
-    imagen1 = models.ImageField(upload_to="vehiculos", null=True)
-    imagen2 = models.ImageField(upload_to="vehiculos", null=True)
-    imagen3 = models.ImageField(upload_to="vehiculos", null=True)
+    imagen1 = models.ImageField(upload_to="vehiculos", null=False)
+    imagen2 = models.ImageField(upload_to="vehiculos", null=False)
+    imagen3 = models.ImageField(upload_to="vehiculos", null=False)
 
     def __str__(self):
         return self.patente  

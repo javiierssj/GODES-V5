@@ -37,7 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'RentCar'
+    'rest_framework',
+    'RentCar',
+    'rest_vehiculo',
+    'rest_framework.authtoken',
     
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
@@ -72,6 +75,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Godes.wsgi.application'
 
+REST_FRAMEWORK={
+    'DEFAULT_AUTHENTICATION_CLASSES':[
+        'rest_framework.authentication.TokenAuthentication',
+    ]
+}
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
