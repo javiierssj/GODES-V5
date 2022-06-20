@@ -3,17 +3,62 @@ from  .models import vehiculo, usuario
 class vehiculoForm(forms.ModelForm):
 
     #idModelo = forms.ChoiceField(widget=forms.TextInput(attrs={"class":"controls",'placeholder':'modelo'}))
-    patente = forms.CharField(widget=forms.TextInput(attrs={"class":"controls",'placeholder':'patente'}))
-    nro_chasis = forms.CharField(widget=forms.TextInput(attrs={"class":"controls",'placeholder':'Nro chasis'}))
-    color = forms.CharField(widget=forms.TextInput(attrs={"class":"controls",'placeholder':'Color'}))
-    estado = forms.CharField(widget=forms.TextInput(attrs={"class":"controls",'placeholder':'Estado'}))
-    asientos = forms.CharField(widget=forms.TextInput(attrs={"class":"controls",'placeholder':'Estado'}))
-    kilos = forms.CharField(widget=forms.TextInput(attrs={"class":"controls",'placeholder':'Estado'}))
-    nro_motor = forms.CharField(widget=forms.TextInput(attrs={"class":"controls",'placeholder':'Estado'}))
-    precio_vehiculo = forms.DecimalField(widget=forms.TextInput(attrs={"class":"controls",'placeholder':'Estado'}))
-    rendimiento = forms.CharField(widget=forms.TextInput(attrs={"class":"controls",'placeholder':'Estado'}))
-    motor = forms.CharField(widget=forms.TextInput(attrs={"class":"controls",'placeholder':'Estado'}))
-    descripcion = forms.CharField(widget=forms.Textarea(attrs={"class":"controls",'placeholder':'Estado'}))
+    #tidModelo = forms.ModelChoiceField(queryset=vehiculo.objects.all())
+
+    patente = forms.CharField( 
+    label="",
+    widget=forms.TextInput(attrs={"class":"controls",'placeholder':'Patente'})
+    )
+    nro_chasis = forms.CharField( 
+    label="",
+    widget=forms.TextInput(attrs={"class":"controls",'placeholder':'Nro de chasis'})
+    )
+    color = forms.CharField( 
+    label="",
+    widget=forms.TextInput(attrs={"class":"controls",'placeholder':'Color'})
+    )
+    estado = forms.CharField( 
+    label="",
+    widget=forms.TextInput(attrs={"class":"controls",'placeholder':'Estado'})
+    )
+    asientos = forms.CharField( 
+    label="",
+    widget=forms.TextInput(attrs={"class":"controls",'placeholder':'Asientos'})
+    )
+    kilos = forms.CharField( 
+    label="",
+    widget=forms.TextInput(attrs={"class":"controls",'placeholder':'Kilos'})
+    )
+    nro_motor = forms.CharField( 
+    label="",
+    widget=forms.TextInput(attrs={"class":"controls",'placeholder':'Numero del motor'})
+    )
+    precio_vehiculo = forms.DecimalField( 
+    label="",
+    widget=forms.NumberInput(attrs={"class":"controls",'placeholder':'Precio'})
+    )
+    rendimiento = forms.CharField( 
+    label="",
+    widget=forms.TextInput(attrs={"class":"controls",'placeholder':'Rendimiento'})
+    )
+    motor = forms.CharField( 
+    label="",
+    widget=forms.TextInput(attrs={"class":"controls",'placeholder':'Motor'})
+    )
+    descripcion = forms.CharField( 
+    label="",
+    widget=forms.Textarea(attrs={"class":"controls",'placeholder':'Descripción'})
+    )
+    imagen1 = forms.ImageField(
+        label="Imagen 1",
+    )
+    imagen2 = forms.ImageField(
+        label="Imagen 2",
+    )
+    imagen3 = forms.ImageField(
+        label="Imagen 3",
+    )
+
     class Meta:
         model = vehiculo
         fields = '__all__'
