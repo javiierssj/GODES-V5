@@ -1,0 +1,33 @@
+{% extends 'RentCar/base.html' %}
+{% block contenido %}
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'RentCar/css/pagina_formulario/formpag.css' %}">
+
+<!--=========================================-->
+<!--DATOS A SOLICITAR-->
+<!--=========================================-->
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 d-flex mt-3 d-flex justify-content-center">
+      <a href="#" class="btn mx-3" style="background-color: rgb(255, 174, 0);">Volver</a>
+
+    </div>
+
+
+  </div>
+
+
+</div>
+<form class="form-registro my-3 mb-4" id="form" action="" method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ form }}
+  <input class="botons" type="submit" value="Modificar Perfil">
+  <p style="color: black;" class="warnings" id="warnings"></p>
+</form>
+{{mensaje}}
+<script src="Validaciones/valdiacion_auto.js"></script>
+
+
+
+{% endblock %}

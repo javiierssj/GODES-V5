@@ -51,12 +51,10 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'informacion' %}">Información</a>
                     </li>
-                    {% if user.is_authenticated %}
-                    {% for usuario in usuario %}      
+                    {% if user.is_authenticated %}  
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'perfil' usuario.id %}">Perfil</a>
+                        <a class="nav-link" href="{% url 'perfil' %}">Perfil</a>
                     </li>
-                    {% endfor %}
                     {% endif %}
 
                     {% if user.is_staff %}

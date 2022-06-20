@@ -90,7 +90,11 @@ def inicio(request):
 def informacion(request):
     return render(request, 'RentCar/Pag_info.html')
 
-def perfil(request, id):
+def perfil(request):
+    data = usuario.objects.all()
+    return render(request,'RentCar/pagina_perfil.html', {'usuario' : data})
+
+def mod_perfil(request, id):
     usuario1 = get_object_or_404(usuario, rut_o_pasaporte=id )
     data = {
         'form': usuarioForm(instance=usuario1)
@@ -102,7 +106,7 @@ def perfil(request, id):
             return redirect(to="inicio")
         data["form"] = formulario
 
-    return render(request, 'RentCar/pagina_perfil.html', data)
+    return render(request, 'RentCar/mod_perfil.html', data)
 
 def ordenes(request):
     return render(request, 'RentCar/pag_registro.html')
