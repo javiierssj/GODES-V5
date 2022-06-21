@@ -4,8 +4,8 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework.parsers import JSONParser
 from django.views.decorators.csrf import csrf_exempt
-from RentCar.models import vehiculo
-from .serializers import vehiculoSerializer
+from RentCar.models import vehiculo, usuario
+from .serializers import vehiculoSerializer, usuarioSerializer
 
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
@@ -47,3 +47,20 @@ def modEliminarvehiculo(request,pat):
     elif request.method == 'DELETE':
         m.delete()
         return Response(status = status.HTTP_204_NO_CONTENT)
+
+@csrf_exempt
+@api_view(['GET','POST'])
+#@permission_classes((IsAuthenticated,))
+def listado_usuarios(request):
+    if request.method == 'GET':
+        usuario1 = usuario.objects.all()
+        serializer = usuarioSerializer(usuario1,many=True)
+        return Response(serializer.data)
+    elif request.method == 'POST':
+        data = JSONParser().parse(request)
+        serializer = usuarioSerializer(data = data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status = status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
