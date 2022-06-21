@@ -64,3 +64,23 @@ def listado_usuarios(request):
             return Response(serializer.data, status = status.HTTP_201_CREATED)
         else:
             return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
+
+@api_view(['PUT','DELETE'])
+#@permission_classes((IsAuthenticated,))
+def modEliminarUsuario(request,run):
+    try:
+        m = usuario.objects.get(rut_o_pasaporte = run)
+    except usuario.DoesNotExist:
+        return Response(status = status.HTTP_404_NOT_FOUND)
+    if request.method == 'PUT':
+        data2 = JSONParser().parse(request)
+        serializer = usuarioSerializer(m, data = data2)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        else:
+            return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
+
+    elif request.method == 'DELETE':
+        m.delete()
+        return Response(status = status.HTTP_204_NO_CONTENT)
