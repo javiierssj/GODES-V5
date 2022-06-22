@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from RentCar.models import vehiculo, usuario
+from RentCar.models import vehiculo, usuario, marca
 
 class vehiculoSerializer(serializers.ModelSerializer):
     class Meta:
@@ -9,4 +9,9 @@ class vehiculoSerializer(serializers.ModelSerializer):
 class usuarioSerializer(serializers.ModelSerializer):
     class Meta:
         model = usuario
+        fields = '__all__'
+
+class marcaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = marca
         fields = '__all__'
