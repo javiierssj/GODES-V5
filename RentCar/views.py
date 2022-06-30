@@ -25,7 +25,31 @@ def registrarusuario(request):
 
     messages.success(request,'La cuenta ha sido creada correctamente')
     return render(request,'RentCar/InicioSesion.html')
+    
+def registraOrden(request):
+    usuarios = User.objects.all()
+    datosUser = {"DatosUser" : usuarios}
+    
+    return render(request,'RentCar/formOrden.html', datosUser)
 
+def registraOrdenV2(request):
+    reserva1 = request.POST['reserva']
+    inicio1  = request.POST['inicio']
+    termino1  = request.POST['termino']
+    nro_documento1  = request.POST['nro_documento']
+    rutopasaporte1  = request.POST['ruttt']
+    patente1  = request.POST['patentee']
+    status1  = request.POST['status']
+    precio1  = request.POST['precio']
+
+    patente2 = vehiculo.objects.get(patente = patente1)
+    status2 =  status.objects.get(id_status = status1)
+    rutopasaporte2 = usuario.objects.get(rut_o_pasaporte= rutopasaporte1)
+
+    orden.objects.create(dia_reserva = reserva1, dia_inicio =inicio1, dia_termino = termino1, nro_documento =nro_documento1 , 
+    rutPasaporte  = rutopasaporte2, ptente = patente2 , idStatus = status2 ,precio_total_orden =  precio1 )
+
+    return redirect('catalogo_planilla')
 
 #LOGIN
 def login_view(request):
