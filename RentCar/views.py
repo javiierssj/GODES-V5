@@ -72,8 +72,8 @@ def mod_auto(request, pat):
         formulario = vehiculoForm(data=request.POST, instance=vehiculo1,  files=request.FILES)
         if formulario.is_valid():
             formulario.save()
-            return redirect(to="catalogo_planilla")
-        data["form"] = formulario
+            data1["mensaje"] = "Modificado correctamente"
+        data1["form"] = formulario
     
     return render(request,"RentCar/mod_auto.html", data1)
 

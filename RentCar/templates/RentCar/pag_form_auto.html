@@ -16,16 +16,8 @@
 
 
 
-
-    {% if mensaje %}
-    <div>
-        {% for i in mensaje %}
-            <h3><p style="color: rgb(255, 174, 0);">{{ i }}</p></h3>
-        {% endfor %}
-    </div>
-  
-    {% endif %}
-
+<br>
+<div style="color:rgb(255, 174, 0); text-align: center;"> <h3><p>{{mensaje}}</p></h3> </div>
 <form class="form-registro my-3 mb-4" id="form" action="" method="POST" enctype="multipart/form-data">
   <center><h4 class="formu" style="font-weight: bold;">Agregar vehiculo</h4></center>
   {% csrf_token %}
@@ -33,6 +25,7 @@
 
   <input class="botons" type="submit" value="Agregar registro">
   <p style="color: black;" class="warnings" id="warnings"></p>
+  
 </form>
 <script src="Validaciones/valdiacion_auto.js"></script>
 

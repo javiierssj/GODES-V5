@@ -17,16 +17,17 @@
 
   </div>
 
-
 </div>
+<br>
+<div style="color:rgb(255, 174, 0); text-align: center;"> <h3><p>{{mensaje}}</p></h3> </div>
 <form class="form-registro my-3 mb-4" id="form" action="" method="POST" enctype="multipart/form-data">
   <center><h4 class="formu" style="font-weight: bold;">Modificar vehiculo</h4></center>
   {% csrf_token %}
   {{ form }}
   <input class="botons" type="submit" value="Modificar">
   <p style="color: black;" class="warnings" id="warnings"></p>
+
 </form>
-{{mensaje}}
 <script src="Validaciones/valdiacion_auto.js"></script>
 
 
