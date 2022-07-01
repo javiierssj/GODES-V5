@@ -3,7 +3,7 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib import admin
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
-from .views import inicio, informacion, mod_perfil, ordenes, registro, registarauto, inicioSesion, registrarusuario, login_view ,logout_view, catalogo_planilla, info_auto, mod_auto, perfil
+from .views import inicio, informacion, mod_perfil, ordenes, registro, registarauto, inicioSesion, registrarusuario, login_view ,logout_view, catalogo_planilla, info_auto, mod_auto, perfil, registraOrdenV2, registraOrden
 
 
 urlpatterns = [
@@ -19,6 +19,8 @@ urlpatterns = [
     path('registrarusuario', registrarusuario, name="registrarusuario"),
     path('catalogo_planilla/',catalogo_planilla,name="catalogo_planilla"),
     path('catalogo_planilla/<pat>', info_auto,name="info_auto"),
+    path('registraOrdenV2', registraOrdenV2, name="registraOrdenV2"),
+    path('add-orden/', registraOrden, name="registraOrden"),
 
     path('acceso/',LoginView.as_view(template_name='RentCar/InicioSesion.html'),name="acceso"),
     path('sesion',login_view,name="sesion"),
