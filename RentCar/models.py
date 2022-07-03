@@ -86,4 +86,4 @@ class orden(models.Model):
     idStatus = models.ForeignKey(status, on_delete=models.CASCADE)
     precio_total_orden = models.IntegerField(verbose_name="Precio total de la orden")
     def __str__(self):
-        return self.id_orden 
+        return str(self.id_orden )

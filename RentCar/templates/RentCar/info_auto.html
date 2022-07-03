@@ -166,8 +166,9 @@
               value="{{user.username}}" required>
             <input class="controls" type="hidden" name="patentee" id="patentee" placeholder="Patente del vehiculo"
               value="{{vehiculo.patente}}">
-            <input class="controls" type="hidden" name="status" id="status" placeholder="status" value="1">
-            <input class="controls" type="number" name="precio" id="precio" placeholder="Precio" required>
+            <input class="controls" type="hidden" name="status" id="status" value="1">
+            <input class="controls" type="hidden" name="precio" id="precio" value="{{vehiculo.precio_vehiculo}}" required>
+            
             <!--Terminos y condiciones-->
             <div class="form-group">
               <label style="font-size: 15px;">
@@ -205,6 +206,7 @@
               }
 
               function calcularDias() {
+                var precioAuto = document.getElementById("precio").value;
                 var fechaInicial = document.getElementById("inicio").value;
                 var fechaFinal = document.getElementById("termino").value;
                 var resultado = "";
@@ -221,7 +223,7 @@
                     // trabajando con milisegundos.
                     var diasDif = dateEnd.getTime() - dateStart.getTime();
                     resultado = "Dias trancurridos: " + (diasDif / 86400000) + " ";
-
+                    valor = (diasDif/ 86400000)*precioAuto;
                   } else {
                     alert("La fecha inicial es posterior a la fecha final");
 
@@ -233,7 +235,7 @@
                     alert("La fecha final es incorrecta");
                 }
                 document.getElementById("resultado").innerHTML = resultado;
-
+                document.getElementById("valor").innerHTML = valor;
               }
             </script>
 
@@ -244,6 +246,7 @@
               <button style="background-color: rgb(255, 174, 0);" type="submit" class="btn btn-primary"
                 id="enviar">Enviar</button>
                 <div id="resultado"></div>
+                <div id="valor"></div>
               <p class="error" id="error"></p>
               <p class="correcto" id="correcto"></p>
             </div>
