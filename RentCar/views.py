@@ -40,7 +40,7 @@ def registraOrdenV2(request):
     rutopasaporte1  = request.POST['ruttt']
     patente1  = request.POST['patentee']
     status1  = request.POST['status']
-    precio1  = request.POST['precio']
+    precio1  = request.POST['valu']
 
     patente2 = vehiculo.objects.get(patente = patente1)
     status2 =  status.objects.get(id_status = status1)
@@ -49,7 +49,7 @@ def registraOrdenV2(request):
     orden.objects.create(dia_reserva = reserva1, dia_inicio =inicio1, dia_termino = termino1, nro_documento =nro_documento1 , 
     rutPasaporte  = rutopasaporte2, ptente = patente2 , idStatus = status2 ,precio_total_orden =  precio1 )
 
-    return redirect('catalogo_planilla')
+    return 
 
 #LOGIN
 def login_view(request):

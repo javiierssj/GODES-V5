@@ -1,7 +1,7 @@
 {% extends 'RentCar/base.html' %}
 {% block contenido %}
 {% load static %}
-
+{% if user.is_staff %}
 <link rel="stylesheet" href="{% static 'RentCar/css/pagina_formulario/formpag.css' %}">
 
 <!--=========================================-->
@@ -31,5 +31,5 @@
 <script src="Validaciones/valdiacion_auto.js"></script>
 
 
-
+{% endif %}
 {% endblock %}
