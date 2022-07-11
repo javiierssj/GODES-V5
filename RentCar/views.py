@@ -122,7 +122,7 @@ def perfil2(request, id ):
     return render(request,'RentCar/mod_perfil.html',{'usuario' : data})
 
 def mod_perfil(request, id):
-    usuario1 = get_object_or_404(usuario, rut_o_pasaporte=id )
+    usuario1 = get_object_or_404(User, username=id )
     data = {
         'form': usuarioForm(instance=usuario1)
       }
