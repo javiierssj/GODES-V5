@@ -189,8 +189,8 @@
             <input class="controls" type="hidden" name="status" id="status" value="1">
             <input class="controls" type="hidden" name="precio" id="precio" value="{{vehiculo.precio_vehiculo}}">
             <input class="controls" type="number" name="valu" id="valu" placeholder="Precio acordado" required>
-
             <!--Terminos y condiciones-->
+   
             <div class="form-group">
               <label style="font-size: 15px;">
                 <input class="formulario-chekbox" type="checkbox" name="terminos" id="terminos" required>
@@ -266,10 +266,10 @@
 
             <div class="modal-footer">
               <!--Cancelar y enviar-->
-              <input style="background-color: rgb(255, 174, 0);" type="button" class="btn btn-primary"
+              <input style="background-color: rgb(255, 174, 0); border: none;" type="button" class="btn btn-primary"
                 value="Calcular precio" onclick="calcularDias();">
               <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
-              <button style="background-color: rgb(255, 174, 0);" type="submit" class="btn btn-primary"
+              <button style="background-color: rgb(255, 174, 0); border: none;" type="submit" class="btn btn-primary"
                 id="enviar">Enviar</button>
               <div id="resultado"></div>
               <div id="valor"></div>
