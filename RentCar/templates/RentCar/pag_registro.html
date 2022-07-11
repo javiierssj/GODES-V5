@@ -17,6 +17,7 @@
             <th scope="col">Fecha inicio</th>
             <th scope="col">Fecha fin</th>
             <th scope="col">Total</th>
+            <th scope="col">Opciones</th>
           </tr>
         </thead>
         <tbody>
@@ -28,6 +29,9 @@
             <td>{{i.dia_inicio}}</td>
             <td>{{i.dia_termino}}</td>
             <td>${{i.precio_total_orden}} </td>
+            <td>
+              <a href="{% url 'eliminarOrden' i.id_orden %}" class="btn btn-danger btn-sm">Eliminar orden</a>
+            </td>
           </tr>
           {% endfor %}
         </tbody>

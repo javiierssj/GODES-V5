@@ -138,8 +138,12 @@ def mod_perfil(request, id):
 def ordenes(request):
     ordenes = orden.objects.all()
     dat = {'ordenes': ordenes}
-
     return render(request, 'RentCar/pag_registro.html', dat)
+
+def eliminarOrden(request, id):
+    orden1 = get_object_or_404(orden, id_orden=id)
+    orden1.delete()
+    return redirect(to="ordenes")
 
 def registro(request):
     return render(request, 'RentCar/pag_formulario.html')
