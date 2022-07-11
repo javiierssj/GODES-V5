@@ -136,7 +136,10 @@ def mod_perfil(request, id):
     return render(request, 'RentCar/mod_perfil.html', data)
 
 def ordenes(request):
-    return render(request, 'RentCar/pag_registro.html')
+    ordenes = orden.objects.all()
+    dat = {'ordenes': ordenes}
+
+    return render(request, 'RentCar/pag_registro.html', dat)
 
 def registro(request):
     return render(request, 'RentCar/pag_formulario.html')

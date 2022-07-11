@@ -4,7 +4,10 @@
   {% load static %}
 
   <link rel="stylesheet" href="{% static 'RentCar/css/pagina.reg/estiloreg.css' %}">
-
+  {% if not user.is_staff %}
+  <h2 style="text-align: center; padding-bottom: 20% ; padding-top: 10%;" >No tienes los privilegios para acceder.</h2>
+  {% endif %}
+  {% if user.is_staff %}
     <table class="table table-striped">
         <thead style="background-color:rgb(255, 174, 0) ;">
           <tr>
@@ -18,79 +21,18 @@
         </thead>
         <tbody>
           <tr>
-            <th scope="row w-100 mx-auto">1</th>
-            <td>Manuel</td>
-            <td>swift</td>
-            <td>11/02/2021</td>
-            <td>11/04/2021</td>
-            <td>$250.000</td>
+            {% for i in ordenes %}
+            <th scope="row w-100 mx-auto">{{i.id_orden}}</th>
+            <td>{{i.rutPasaporte}}</td>
+            <td><a href="{% url 'info_auto' i.ptente %}">{{i.ptente}}</a> </td>
+            <td>{{i.dia_inicio}}</td>
+            <td>{{i.dia_termino}}</td>
+            <td>${{i.precio_total_orden}} </td>
           </tr>
-          <tr>
-            <th scope="row w-100 mx-auto">2</th>
-            <td>Joaquin</td>
-            <td>i10</td>
-            <td>02/01/2021</td>
-            <td>02/06/2021</td>
-            <td>$500.000</td>
-          </tr>
-          <tr>
-            <th scope="row w-100 mx-auto">3</th>
-            <td>Rodrigo</td>
-            <td>swift</td>
-            <td>10/01/2021</td>
-            <td>10/04/2021</td>
-            <td>$350.000</td>
-          </tr>
-          <tr>
-            <th scope="row w-100 mx-auto">4</th>
-            <td>Sebastian</td>
-            <td>xv</td>
-            <td>15/01/2022</td>
-            <td>15/012/2022</td>
-            <td>$150.000</td>
-          </tr>
-          <tr>
-            <th scope="row w-100 mx-auto">5</th>
-            <td>Miguel</td>
-            <td>Santa fe</td>
-            <td>12/05/2022</td>
-            <td>12/10/2022</td>
-            <td>$500.000</td>
-          </tr>
-          <tr>
-            <th scope="row w-100 mx-auto">6</th>
-            <td>Alejandra</td>
-            <td>swift</td>
-            <td>20/01/2021</td>
-            <td>20/05/2021</td>
-            <td>$400.000</td>
-          </tr>
-          <tr>
-            <th scope="row w-100 mx-auto">7</th>
-            <td>Monica</td>
-            <td>swift</td>
-            <td>21/02/2021</td>
-            <td>21/04/2021</td>
-            <td>$250.000</td>
-          </tr>
-          <tr>
-            <th scope="row w-100 mx-auto">8</th>
-            <td>Gerardo</td>
-            <td>santa fe</td>
-            <td>10/03/2021</td>
-            <td>10/05/2021</td>
-            <td>$250.000</td>
-          </tr>
-          <tr>
-            <th scope="row w-100 mx-auto">9</th>
-            <td>Ismael</td>
-            <td>i10</td>
-            <td>15/02/2021</td>
-            <td>15/04/2021</td>
-            <td>$250.000</td>
-          </tr>
+          {% endfor %}
         </tbody>
       </table>
+      {% endif %}
 
       
 {% endblock %}
