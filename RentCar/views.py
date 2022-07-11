@@ -101,7 +101,10 @@ def mod_auto(request, pat):
     
     return render(request,"RentCar/mod_auto.html", data1)
 
-
+def eliminarAuto(request, pat):
+    vehiculo1 = get_object_or_404(vehiculo, patente=pat)
+    vehiculo1.delete()
+    return redirect(to="catalogo_planilla")
 
 
 def catalogo_planilla(request):
