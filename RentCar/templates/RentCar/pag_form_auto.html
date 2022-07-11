@@ -1,6 +1,9 @@
 {% extends 'RentCar/base.html' %}
 {% block contenido %}
 {% load static %}
+{% if not user.is_staff %}
+<h2 style="text-align: center; padding-bottom: 20% ; padding-top: 10%;" >No tienes los privilegios para acceder.</h2>
+{% endif %}
 {% if user.is_staff %}
 <link rel="stylesheet" href="{% static 'RentCar/css/pagina_formulario/formpag.css' %}">
 

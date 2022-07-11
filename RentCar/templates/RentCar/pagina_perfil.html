@@ -60,6 +60,7 @@
           <label for="">Contraseña actual</label>
           <a href="#"><input type="password" name="clave1" id="clave1" class="form-control" required><span class="barra"></span></a>
         </div>
+        <a href="{% url 'mod_perfil' user.username %}" class="btn" style="background-color: rgb(255, 174, 0); margin-left: 110px;">MODIFICAR</a>
 
         <button type="submit" class="btn mx-3" style="background-color: rgb(255, 174, 0)">Guardar</button>
 

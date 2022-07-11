@@ -114,8 +114,12 @@ def inicio(request):
 def informacion(request):
     return render(request, 'RentCar/Pag_info.html')
 
-def perfil(request):
+def perfil(request ):
     return render(request,'RentCar/pagina_perfil.html')
+    
+def perfil2(request, id ):
+    data = usuario.objects.get( rut_o_pasaporte = id)
+    return render(request,'RentCar/mod_perfil.html',{'usuario' : data})
 
 def mod_perfil(request, id):
     usuario1 = get_object_or_404(usuario, rut_o_pasaporte=id )
