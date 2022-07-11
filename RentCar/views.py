@@ -49,7 +49,7 @@ def registraOrdenV2(request):
     orden.objects.create(dia_reserva = reserva1, dia_inicio =inicio1, dia_termino = termino1, nro_documento =nro_documento1 , 
     rutPasaporte  = rutopasaporte2, ptente = patente2 , idStatus = status2 ,precio_total_orden =  precio1 )
 
-    return 
+    return redirect('catalogo_planilla')
 
 #LOGIN
 def login_view(request):

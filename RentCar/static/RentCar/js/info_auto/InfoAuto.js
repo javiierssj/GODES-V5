@@ -11,6 +11,7 @@ $(document).ready(function () {
         let f2 = document.getElementById("termino").value
         let f3 = document.getElementById("precio").value
         let f4 = document.getElementById("valu").value
+        let f5 = document.getElementById("reserva").value
         parrafo.innerHTML = ""
         parrafo1.innerHTML = ""
         var resultado = "";
@@ -54,5 +55,7 @@ $(document).ready(function () {
 
 inicio.min = new Date().toISOString().split("T")[0];
 termino.min = new Date().toISOString().split("T")[0];
+
+
 
 //hacer la validacion aqui dentro para ver si es igual o no
