@@ -1,5 +1,6 @@
 from django import forms
-from  .models import vehiculo, usuario
+from  .models import vehiculo
+from django.contrib.auth.models import User
 class vehiculoForm(forms.ModelForm):
 
     #idModelo = forms.ChoiceField(widget=forms.TextInput(attrs={"class":"controls",'placeholder':'modelo'}))
@@ -65,6 +66,19 @@ class vehiculoForm(forms.ModelForm):
 
 class usuarioForm(forms.ModelForm):
 
+    first_name = forms.CharField( 
+    label="",
+    widget=forms.TextInput(attrs={"class":"controls",'placeholder':'Patente'})
+    )
+    last_name = forms.CharField( 
+    label="",
+    widget=forms.TextInput(attrs={"class":"controls",'placeholder':'Patente'})
+    )
+    email = forms.EmailField(
+    label="",
+    widget=forms.TextInput(attrs={"class":"controls",'placeholder':""})
+    )
+
     class Meta:
-        model = usuario
-        fields = ["nombre", "appaterno",  "apmaterno", "direccion"]
+        model = User
+        fields = ["first_name","last_name","email"]

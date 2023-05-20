@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 
 from django.contrib.auth import authenticate, login, logout
-from .models import usuario, vehiculo, modelo
+from .models import usuario, vehiculo, modelo, status, orden
 from django.contrib import messages
 from django.contrib.auth.models import User
 from .forms import vehiculoForm, usuarioForm
@@ -25,7 +25,31 @@ def registrarusuario(request):
 
     messages.success(request,'La cuenta ha sido creada correctamente')
     return render(request,'RentCar/InicioSesion.html')
+    
+def registraOrden(request):
+    usuarios = User.objects.all()
+    datosUser = {"DatosUser" : usuarios}
+    
+    return render(request,'RentCar/formOrden.html', datosUser)
 
+def registraOrdenV2(request):
+    reserva1 = request.POST['reserva']
+    inicio1  = request.POST['inicio']
+    termino1  = request.POST['termino']
+    nro_documento1  = request.POST['nro_documento']
+    rutopasaporte1  = request.POST['ruttt']
+    patente1  = request.POST['patentee']
+    status1  = request.POST['status']
+    precio1  = request.POST['valu']
+
+    patente2 = vehiculo.objects.get(patente = patente1)
+    status2 =  status.objects.get(id_status = status1)
+    rutopasaporte2 = usuario.objects.get(rut_o_pasaporte= rutopasaporte1)
+
+    orden.objects.create(dia_reserva = reserva1, dia_inicio =inicio1, dia_termino = termino1, nro_documento =nro_documento1 , 
+    rutPasaporte  = rutopasaporte2, ptente = patente2 , idStatus = status2 ,precio_total_orden =  precio1 )
+
+    return redirect('catalogo_planilla')
 
 #LOGIN
 def login_view(request):
@@ -72,12 +96,15 @@ def mod_auto(request, pat):
         formulario = vehiculoForm(data=request.POST, instance=vehiculo1,  files=request.FILES)
         if formulario.is_valid():
             formulario.save()
-            return redirect(to="catalogo_planilla")
-        data["form"] = formulario
+            data1["mensaje"] = "Modificado correctamente"
+        data1["form"] = formulario
     
     return render(request,"RentCar/mod_auto.html", data1)
 
-
+def eliminarAuto(request, pat):
+    vehiculo1 = get_object_or_404(vehiculo, patente=pat)
+    vehiculo1.delete()
+    return redirect(to="catalogo_planilla")
 
 
 def catalogo_planilla(request):
@@ -90,11 +117,15 @@ def inicio(request):
 def informacion(request):
     return render(request, 'RentCar/Pag_info.html')
 
-def perfil(request):
+def perfil(request ):
     return render(request,'RentCar/pagina_perfil.html')
+    
+def perfil2(request, id ):
+    data = usuario.objects.get( rut_o_pasaporte = id)
+    return render(request,'RentCar/mod_perfil.html',{'usuario' : data})
 
 def mod_perfil(request, id):
-    usuario1 = get_object_or_404(usuario, rut_o_pasaporte=id )
+    usuario1 = get_object_or_404(User, username=id )
     data = {
         'form': usuarioForm(instance=usuario1)
       }
@@ -108,7 +139,14 @@ def mod_perfil(request, id):
     return render(request, 'RentCar/mod_perfil.html', data)
 
 def ordenes(request):
-    return render(request, 'RentCar/pag_registro.html')
+    ordenes = orden.objects.all()
+    dat = {'ordenes': ordenes}
+    return render(request, 'RentCar/pag_registro.html', dat)
+
+def eliminarOrden(request, id):
+    orden1 = get_object_or_404(orden, id_orden=id)
+    orden1.delete()
+    return redirect(to="ordenes")
 
 def registro(request):
     return render(request, 'RentCar/pag_formulario.html')

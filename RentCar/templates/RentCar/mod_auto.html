@@ -1,7 +1,10 @@
 {% extends 'RentCar/base.html' %}
 {% block contenido %}
 {% load static %}
-
+{% if not user.is_staff %}
+<h2 style="text-align: center; padding-bottom: 20% ; padding-top: 10%;" >No tienes los privilegios para acceder.</h2>
+{% endif %}
+{% if user.is_staff %}
 <link rel="stylesheet" href="{% static 'RentCar/css/pagina_formulario/formpag.css' %}">
 
 <!--=========================================-->
@@ -17,18 +20,19 @@
 
   </div>
 
-
 </div>
+<br>
+<div style="color:rgb(255, 174, 0); text-align: center;"> <h3><p>{{mensaje}}</p></h3> </div>
 <form class="form-registro my-3 mb-4" id="form" action="" method="POST" enctype="multipart/form-data">
   <center><h4 class="formu" style="font-weight: bold;">Modificar vehiculo</h4></center>
   {% csrf_token %}
   {{ form }}
   <input class="botons" type="submit" value="Modificar">
   <p style="color: black;" class="warnings" id="warnings"></p>
+
 </form>
-{{mensaje}}
 <script src="Validaciones/valdiacion_auto.js"></script>
 
 
-
+{% endif %}
 {% endblock %}

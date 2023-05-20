@@ -1,39 +1,169 @@
-  
-  {% extends 'RentCar/base.html' %}
-  {% block contenido %}
-  {% load static %}
- 
-  <link rel="stylesheet" href="{% static 'RentCar/css/pagina_formulario/formpag.css' %}">
-  
-  <!--=========================================-->
-  <!--DATOS A SOLICITAR-->
-  <!--=========================================-->
-  <div class="container-fluid">
+{% extends 'RentCar/base.html' %}
+{% block contenido %}
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'RentCar/css/pagina_formulario/formpag.css' %}">
+
+<!--=========================================-->
+<!--DATOS A SOLICITAR-->
+<!--=========================================-->
+<div class="container-fluid">
     <div class="row">
-      <div class="col-lg-12 col-md-12 col-sm-12 d-flex mt-3 d-flex justify-content-center">
-        <a href="" class="btn mx-3" style="background-color: rgb(255, 174, 0);">Volver</a>
+        <div class="col-lg-12 col-md-12 col-sm-12 d-flex mt-3 d-flex justify-content-center">
+            <a href="" class="btn mx-3" style="background-color: rgb(255, 174, 0);">Volver</a>
+
+        </div>
+
 
     </div>
 
 
-    </div>
-
-    
-  </div>
-  <form id="registrarusuario" class="form-registro my-3 mb-4" method="POST" action="{% url 'registrarusuario' %}">
+</div>
+<form id="f" class="form-registro my-3 mb-4" method="POST" action="{% url 'registrarusuario' %}">
     {% csrf_token %}
-     <center><h4 class="formu" style="font-weight: bold;">Registrarse</h4></center>
-     <input class="controls" type="text" name="rut" id="rut" placeholder="Rut o pasaporte" required>
-     <input class="controls" type="password" name="clave" id="clave" placeholder="Contraseña"required>
-     <input class="controls" ype="text" name="nombreu" id="nombreu" placeholder="Nombre"required>
-     <input class="controls" type="text" name="appaterno" id="appaterno" placeholder="Apellido paterno"required>
-     <input class="controls" type="text" name="apmaterno" id="apmaterno" placeholder="Apellido materno"required>
-     <input class="controls" type="text" name="correo" id="correo" placeholder="Correo electronico"required>
-     <input class="controls" type="text" name="dire" id="dire" placeholder="Direccion"required>
-     <label style="font-size: 20px;" for="">Fecha de nacimiento</label>
-     <input class="controls" type="date" name="naci" id="naci" required>
-     <input class="botons" type="submit" value="Agregar registro">
-     <p style="color: black;" class="warnings" id="warnings"></p>
-</form>   
+    <center>
+        <h4 class="formu" style="font-weight: bold;">Registrarse</h4>
+    </center>
+    <input class="controls" type="text" name="rut" id="rut" placeholder="Rut o pasaporte" required>
+    <input class="controls" type="password" name="clave" id="clave" placeholder="Contraseña" required>
+    <input class="controls" ype="text" name="nombreu" id="nombreu" placeholder="Nombre" required>
+    <input class="controls" type="text" name="appaterno" id="appaterno" placeholder="Apellido paterno" required>
+    <input class="controls" type="text" name="apmaterno" id="apmaterno" placeholder="Apellido materno" required>
+    <input class="controls" type="email" name="correo" id="correo" placeholder="Correo electronico" required>
+    <input class="controls" type="text" name="dire" id="dire" placeholder="Direccion" required>
+    <label style="font-size: 20px;" for="">Fecha de nacimiento</label>
+    <input class="controls" type="date" name="naci" id="naci" required>
+    <button type="submit" class="botons" id="agregar">Agregar Registro</button>
+    <p style="color: black;" class="warnings" id="warnings"></p>
+    <p class="error" id="error"></p>
+    <p class="correcto" id="correcto"></p>
+</form>
+<script type="text/javascript">
+    const parrafo = document.getElementById("error")
+    const parrafo1 = document.getElementById("correcto")
+    $(document).ready(function () {
+        $("#f").submit(function (e) {
 
+
+            let entrar = false
+            let error = ""
+            let f1 = document.getElementById("rut").value
+            let f2 = document.getElementById("clave").value
+            let f3 = document.getElementById("nombreu").value
+            let f4 = document.getElementById("appaterno").value
+            let f5 = document.getElementById("apmaterno").value
+            let f6 = document.getElementById("dire").value
+            let f7 = document.getElementById("correo").value
+            
+
+            parrafo.innerHTML = ""
+            parrafo1.innerHTML = ""
+            
+            if (f1 == 777 ){
+                error = '111111111111111'
+                entrar = true
+            } 
+
+            if (f1.trim().length < 9 || f1.trim().length > 12 ){
+                error = 'El rut o pasaporte no es valido <br>'
+                entrar = true
+            } 
+
+            if (f7.indexOf('@', 0) == -1 || f7.indexOf('.', 0) == -1) {
+                /*alert('El correo electrónico introducido no es correcto.');*/
+                error = 'El correo no es valido. <br>'
+                entrar = true
+            }
+
+            /*VALIDACION CLAVE*/
+            if (f2.trim().length < 4 || f2.trim().length > 10) {
+                error = 'La clave no tiene la longitud correcta <br>'
+                entrar = true
+            }
+
+            let corte1 = document.getElementById("clave").value
+            let contar_numeros = corte1.replace(/[^0-9]/g, "").length
+
+            if (contar_numeros == 0) {
+                error = 'Falta al menos un numero en la contraseña.<br>'
+                entrar = true
+            }
+
+            if (contar_numeros == f2.trim().length) {
+                error = 'La contraseña no debe ser solo numeros.<br>'
+                entrar = true;
+            }
+
+            /Validacion espacios/
+            let espacios = false
+            let cont = 0
+
+            while (!espacios && (cont < f2.length)) {
+                if (f2.charAt(cont) == " ")
+                    espacios = true
+                cont++
+            }
+            if (espacios) {
+                error = 'La contraseña no debe contener espacios. <br>'
+
+                espacios = false
+                entrar = true
+            }
+
+            /Validacion Mayusculas/
+
+            var letraValidar = f3.charAt(0);
+            if (!esMayuscula(letraValidar)) {
+                error = 'La primera letra de la nombre debe ser mayuscula. <br>'
+                entrar = true
+            }
+            var letraValidar = f4.charAt(0);
+            if (!esMayuscula(letraValidar)) {
+                error = 'La primera letra de el apellido paterno debe ser mayuscula. <br>'
+                entrar = true
+            }
+            var letraValidar = f5.charAt(0);
+            if (!esMayuscula(letraValidar)) {
+                error = 'La primera letra de el apellido materno debe ser mayuscula. <br>'
+                entrar = true
+            }
+            
+            /Validacion longitud/
+
+            if (f3.trim().length < 4 || f3.trim().length > 12) {
+                error = 'El nombre no es valido, debe ser entre 4 y 12 caracteres.<br>'
+                entrar = true
+            }
+            if (f4.trim().length < 3 || f4.trim().length > 15) {
+                error = 'El apellido paterno no es valido, debe ser entre 4 y 15 caracteres.<br>'
+                entrar = true;
+            }
+            if (f5.trim().length < 3 || f5.trim().length > 15) {
+                error = 'El apellido materno no es valido, debe ser entre 4 y 15 caracteres.<br>'
+                entrar = true;
+            }
+            if (f6.trim().length < 4 || f6.trim().length > 30) {
+                error = 'La direccion no es valida, debe ser entre 4 y 30 caracteres.<br>'
+                entrar = true
+            }
+
+            if (entrar) {
+                
+                parrafo.innerHTML = error
+                e.preventDefault();
+            }
+            else {
+                parrafo1.innerHTML = "Creada Correctamente."
+    
+            }
+        })
+        function esMayuscula(letra) {
+            return letra === letra.toUpperCase();
+        }
+
+    });
+
+
+    naci.max = new Date('2004-12-01').toISOString().split("T")[0];
+    </script>
 {% endblock %}

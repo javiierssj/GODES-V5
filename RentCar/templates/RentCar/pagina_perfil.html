@@ -23,46 +23,24 @@
           <label for="disabledTextInput" class="form-label">Correo Electronico</label>
           <input type="text" id="disabledTextInput" class="form-control" placeholder="{{ user.email }}">
         </div>
-      </fieldset>
+    
       <div class="form">
 
         <div class="mb-3">
-          <label for="">Nombre</label>
+          <label for="disabledTextInput">Nombre</label>
           <input type="text" name="nombre" id="nombre" class="form-control" placeholder="{{user.first_name}}" required><span
             class="barra"></span>
 
         </div>
         <div class="mb-3">
-          <label for="">Apellido Paterno</label>
+          <label for="disabledTextInput">Apellido</label>
           <input type="text" name="apellido_p" id="apellido_p" class="form-control" placeholder="{{user.last_name}}" required><span
             class="barra"></span>
 
         </div>
-        <div class="mb-3">
-          <label for="">Apellido Materno</label>
-          <input type="text" name="apellido_m" id="apellido_m" class="form-control" placeholder="{{user.apmaterno}}"
-            required><span class="barra"></span>
-
-        </div>
-        <div class="mb-3">
-          <label for="">Direccion</label>
-          <input type="text" name="direccion" id="direccion" class="form-control" placeholder="{{usuario.direccion}}"
-            required><span class="barra"></span>
-
-        </div>
-
-        <div class="mb-3">
-          <label for="">Nueva contraseña</label>
-          <input type="password" name="clave" id="clave" class="form-control" required><span class="barra"></span>
-
-        </div>
-        <div class="mb-3">
-          <label for="">Contraseña actual</label>
-          <a href="#"><input type="password" name="clave1" id="clave1" class="form-control" required><span class="barra"></span></a>
-        </div>
-
-        <button type="submit" class="btn mx-3" style="background-color: rgb(255, 174, 0)">Guardar</button>
-
+      </fieldset>
+  
+        <center><a href="{% url 'mod_perfil' user.username %}" class="btn" style="background-color: rgb(255, 174, 0);">MODIFICAR</a></center>
         <p class="warnings" id="warnings"></p>
       </div>
     </div>
